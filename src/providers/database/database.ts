@@ -27,7 +27,7 @@ export class DatabaseProvider {
         this.storage = new SQLite();
         this.storage.create({name: "plan.db", location:"default"}).then((db:SQLiteObject)=>{
           this.db = db;
-          db.executeSql("CREATE TABLE IF NOT EXISTS plan(id INTENGER PRIMARY KEY AUTOINCREMENT, dzien TEXT NOT NULL przedmiot TEXT NOT NULL,klasa TEXT NOT NULL,godzina_start TEXT NOT NULL,godzina_koniec TEXT NOT NULL)",[])
+          db.executeSql("CREATE TABLE IF NOT EXISTS plan(id INTEGER PRIMARY KEY AUTOINCREMENT, dzien TEXT NOT NULL przedmiot TEXT NOT NULL,klasa TEXT NOT NULL,godzina_start TEXT NOT NULL,godzina_koniec TEXT NOT NULL)",[])
           this.isOpen = true;
         }).catch((error) =>{
             console.log(error);
@@ -69,4 +69,123 @@ export class DatabaseProvider {
           })
        })
       }
-    }
+      pokazLekcjePoniedzialek(){
+        return new Promise((resolve, reject)=>{
+          this.db.executeSql("SELECT * FROM plan where dzien= poniedzialek",[]).then((data)=>{
+            let planLekcji = [];
+            if(data.rows.length > 0){
+                for( var i = 0; i < data.rows.length; i++){
+                  planLekcji.push({
+                    id: data.rows.item(i).id,
+                    dzien: data.rows.item(i).dzien,
+                    przedmiot: data.rows.item(i).przedmiot,
+                    klasa: data.rows.item(i).klasa,
+                    godzina_start: data.rows.item(i).godzina_start,
+                    godzina_koniec: data.rows.item(i).godzina_koniec,
+                  });
+                }
+  
+              }
+              resolve(planLekcji);
+            }, (error)=>{
+              reject(error);
+            })
+         })
+        }
+
+        pokazLekcjeWtorek(){
+          return new Promise((resolve, reject)=>{
+            this.db.executeSql("SELECT * FROM plan where dzien= wtorek",[]).then((data)=>{
+              let planLekcji = [];
+              if(data.rows.length > 0){
+                  for( var i = 0; i < data.rows.length; i++){
+                    planLekcji.push({
+                      id: data.rows.item(i).id,
+                      dzien: data.rows.item(i).dzien,
+                      przedmiot: data.rows.item(i).przedmiot,
+                      klasa: data.rows.item(i).klasa,
+                      godzina_start: data.rows.item(i).godzina_start,
+                      godzina_koniec: data.rows.item(i).godzina_koniec,
+                    });
+                  }
+    
+                }
+                resolve(planLekcji);
+              }, (error)=>{
+                reject(error);
+              })
+           })
+          }
+
+          pokazLekcjeSroda(){
+            return new Promise((resolve, reject)=>{
+              this.db.executeSql("SELECT * FROM plan where dzien= sroda",[]).then((data)=>{
+                let planLekcji = [];
+                if(data.rows.length > 0){
+                    for( var i = 0; i < data.rows.length; i++){
+                      planLekcji.push({
+                        id: data.rows.item(i).id,
+                        dzien: data.rows.item(i).dzien,
+                        przedmiot: data.rows.item(i).przedmiot,
+                        klasa: data.rows.item(i).klasa,
+                        godzina_start: data.rows.item(i).godzina_start,
+                        godzina_koniec: data.rows.item(i).godzina_koniec,
+                      });
+                    }
+      
+                  }
+                  resolve(planLekcji);
+                }, (error)=>{
+                  reject(error);
+                })
+             })
+            }
+            pokazLekcjeCzwartek(){
+              return new Promise((resolve, reject)=>{
+                this.db.executeSql("SELECT * FROM plan where dzien= czwartek",[]).then((data)=>{
+                  let planLekcji = [];
+                  if(data.rows.length > 0){
+                      for( var i = 0; i < data.rows.length; i++){
+                        planLekcji.push({
+                          id: data.rows.item(i).id,
+                          dzien: data.rows.item(i).dzien,
+                          przedmiot: data.rows.item(i).przedmiot,
+                          klasa: data.rows.item(i).klasa,
+                          godzina_start: data.rows.item(i).godzina_start,
+                          godzina_koniec: data.rows.item(i).godzina_koniec,
+                        });
+                      }
+        
+                    }
+                    resolve(planLekcji);
+                  }, (error)=>{
+                    reject(error);
+                  })
+               })
+              }
+      
+              pokazLekcjePiatek(){
+                return new Promise((resolve, reject)=>{
+                  this.db.executeSql("SELECT * FROM plan where dzien= piatek",[]).then((data)=>{
+                    let planLekcji = [];
+                    if(data.rows.length > 0){
+                        for( var i = 0; i < data.rows.length; i++){
+                          planLekcji.push({
+                            id: data.rows.item(i).id,
+                            dzien: data.rows.item(i).dzien,
+                            przedmiot: data.rows.item(i).przedmiot,
+                            klasa: data.rows.item(i).klasa,
+                            godzina_start: data.rows.item(i).godzina_start,
+                            godzina_koniec: data.rows.item(i).godzina_koniec,
+                          });
+                        }
+          
+                      }
+                      resolve(planLekcji);
+                    }, (error)=>{
+                      reject(error);
+                    })
+                 })
+                }
+          }
+    

@@ -10,15 +10,37 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding ng-controller="getLessons()">
+<ion-content padding ng-controller="ionViewWillEnter()">
   
     <ion-list>
       <ion-item >lekca<br>
        <br>
       
       </ion-item>
-      
-
+    </ion-list>
+    <ion-list>
+      <ion-item-sliding *ngFor = "let lekcja of ListaLekcji">
+        <ion-item>
+         
+          <h2>{{lekcja.przedmiot}}</h2>
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button color="primary">
+            <ion-icon name="text"></ion-icon>
+            Text
+          </button>
+          <button ion-button color="secondary">
+            <ion-icon name="call"></ion-icon>
+            Call
+          </button>
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="mail"></ion-icon>
+            Email
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
     
   <button (click)="pokazLekcje()">POKAZ</button>

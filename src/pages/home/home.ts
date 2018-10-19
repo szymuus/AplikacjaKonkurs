@@ -10,13 +10,18 @@ import { DatabaseProvider } from '../../providers/database/database';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  private ListaLekcji : any;
   constructor(public navCtrl: NavController, public lessonsServices: LessonsService,private alertCtrl: AlertController,public localNotification: PhonegapLocalNotification, private sqlLite: SQLite,private database : DatabaseProvider) {
      
     }
     //pokazuje lekcje
     ionViewWillEnter(){
-      
+      this.database.pokazLekcjePoniedzialek().then((data: any)=>{
+        console.log(data);
+        this.ListaLekcji = data;
+      },(error)=>{
+        console.log(error);
+      })
       
       
     }
@@ -28,8 +33,9 @@ export class HomePage {
   
   //pokazuej lekcje
   pokazLekcje(){
-    this.database.pokazLekcje().then((data)=>{
+    this.database.pokazLekcje().then((data: any)=>{
       console.log(data);
+      this.ListaLekcji = data;
     }, (error)=>{
       console.log(error);
     })
