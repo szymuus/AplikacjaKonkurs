@@ -19,28 +19,13 @@
       </ion-item>
     </ion-list>
     <ion-list>
-      <ion-item-sliding *ngFor = "let lekcja of ListaLekcji">
-        <ion-item>
-         
-          <h2>{{lekcja.przedmiot}}</h2>
-        </ion-item>
-        <ion-item-options side="left">
-          <button ion-button color="primary">
-            <ion-icon name="text"></ion-icon>
-            Text
-          </button>
-          <button ion-button color="secondary">
-            <ion-icon name="call"></ion-icon>
-            Call
-          </button>
-        </ion-item-options>
-        <ion-item-options side="right">
-          <button ion-button color="primary">
-            <ion-icon name="mail"></ion-icon>
-            Email
-          </button>
-        </ion-item-options>
-      </ion-item-sliding>
+      <ion-item *ngFor="let lesson of ListaLekcji">
+        <p>{{ lesson.dzien}}</p>
+        <p>{{ lesson.przedmiot}}</p>
+        <p>{{ lesson.klasa}}</p>
+        <p>{{ lesson.godz_start}}</p>
+        <p>{{ lesson.godz_stop}}</p>
+      </ion-item>
     </ion-list>
     
   <button (click)="pokazLekcje()">POKAZ</button>
